@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { ItemWrapper } from './ItemWrapper';
 
 import trashIcon from '../assets/icons/trash/trash.png'
+import editIcon from '../assets/icons/edit/edit.png'
 
 export interface Task {
   id: number;
@@ -37,8 +38,7 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
               >
                 <View
                   testID={`marker-${index}`}
-                  style={item.done ? styles.taskMarkerDone : styles.taskMarker}
-                >
+                  style={item.done ? styles.taskMarkerDone : styles.taskMarker}>
                   {item.done && (
                     <Icon
                       name="check"
@@ -56,13 +56,23 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity
-              testID={`trash-${index}`}
-              style={{ paddingHorizontal: 24 }}
-              onPress={() => removeTask(item.id)}
-            >
-              <Image source={trashIcon} />
-            </TouchableOpacity>
+            <View style={styles.actions}>
+              <TouchableOpacity
+                testID={`trash-${index}`}
+                style={{ marginHorizontal: 8, maxWidth: 18 }}
+                onPress={() => console.log('editar')}
+              >
+                <Image source={editIcon} />
+              </TouchableOpacity>
+              <View style={styles.divider}/>
+              <TouchableOpacity
+                testID={`trash-${index}`}
+                style={{ marginHorizontal: 2, maxWidth: 18 }}
+                onPress={() => removeTask(item.id)}
+              >
+                <Image source={trashIcon} />
+              </TouchableOpacity>
+            </View>
           </ItemWrapper>
         )
       }}
@@ -74,6 +84,18 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
 }
 
 const styles = StyleSheet.create({
+  actions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+  },
+  divider: {
+    width: 1,
+    height: 24,
+    borderRadius: 9,
+    backgroundColor: '#c4c4c4',
+    marginHorizontal: 8,
+  },
   taskButton: {
     flex: 1,
     paddingHorizontal: 24,
