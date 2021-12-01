@@ -6,7 +6,10 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest --watch-All"
+    "test": "jest --watch-All",
+    "test:header": "jest src/__tests__/components/Header.spec.tsx",
+    "test:input": "jest src/__tests__/components/TodoInput.spec.tsx",
+    "test:list": "jest src/__tests__/components/TaskList.spec.tsx"
   },
   "dependencies": {
     "react": "17.0.1",
